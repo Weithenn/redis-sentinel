@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  master:
+    image: weithenn/redis-master:latest
+    ports:
+      - "6379:6379"
+    volumes:
+      - /proc:/wproc
+      - /sys:/wsys
+    networks:
+      - vnet
+    deploy:
+      replicas: 1
+      update_config:
+        delay: 60s
+
+networks:
+  vnet:

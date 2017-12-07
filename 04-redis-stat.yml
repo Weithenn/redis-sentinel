@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  stat:
+    image: weithenn/redis-stat:latest
+    command: redis-stat --server redis_master
+    ports:
+      - "80:63790"
+    networks:
+      - vnet
+    deploy:
+      replicas: 1
+      update_config:
+        delay: 60s
+
+networks:
+  vnet:

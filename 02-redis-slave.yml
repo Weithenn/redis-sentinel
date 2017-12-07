@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  slave:
+    image: weithenn/redis-slave:latest
+    ports:
+      - "6380:6379"
+    volumes:
+      - /proc:/wproc
+      - /sys:/wsys
+    networks:
+      - vnet
+    deploy:
+      replicas: 2
+      update_config:
+        delay: 60s
+
+networks:
+  vnet:
